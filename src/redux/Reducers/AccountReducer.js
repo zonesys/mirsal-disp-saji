@@ -5,6 +5,7 @@ const initialValues = {
     username: "",
     companyId: "",
     isLogged: false,
+    role: "",
   },
 };
 const accountReducer = (state = initialValues, action) => {
@@ -16,6 +17,7 @@ const accountReducer = (state = initialValues, action) => {
           username: action.payload.username,
           companyId: action.payload.companyId,
           isLogged: !initialValues.user.isLogged,
+          role: !initialValues.user.role,
         },
       };
     }
