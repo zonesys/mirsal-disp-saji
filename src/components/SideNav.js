@@ -9,10 +9,11 @@ import { StarBorder } from "@mui/icons-material";
 import GroupListMember from "./GroupListMember";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getGroupsAction } from "../redux/Actions/ApiAction";
 
 const SideNav = (props) => {
+  const account = useSelector((state) => state.account);
   const dispatch = useDispatch();
   useEffect(() => {
     GetGroups();
@@ -23,7 +24,7 @@ const SideNav = (props) => {
   const GetGroups = () => {
     axios
       .get(
-        "http://46.253.93.3:80/mirsal-api/public/Company/Read.php/company/1/devices"
+        `http://46.253.93.3:80/mirsal-api/public/Company/Read.php/company/${account.user.companyId}/devices`
       )
       .then((res) => {
         const data = res.data.data;
@@ -99,11 +100,11 @@ const SideNav = (props) => {
               <span>GORUPS</span>
               <div className="d-flex align-items-center mb-1">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="checkbox"
                   id="inlineFormCheck"
                 />
-                <label class="form-check-label mx-1 mt-1" for="inlineFormCheck">
+                <label className="form-check-label mx-1 mt-1" htmlFor="inlineFormCheck">
                   Show All
                 </label>
               </div>

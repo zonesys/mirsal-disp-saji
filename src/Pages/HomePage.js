@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePageNavBar from "../components/HomePageNavBar";
 import SideNav from "../components/SideNav";
@@ -7,7 +8,6 @@ import MembersPage from "./MembersPage";
 
 const HomePage = () => {
   const [currentGroup, setCurrentGroup] = useState(0);
-
   return (
     <BrowserRouter>
       <div id="home-page" className="container-fluid d-flex flex-column p-0">

@@ -1,11 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
-import ApartmentIcon from "@mui/icons-material/Apartment";
-import AodIcon from "@mui/icons-material/Aod";
-import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
-import CheckIcon from "@mui/icons-material/Check";
 import Statistics from "../../../components/CompanyApp/Statistics";
 import CompanyTable from "../../../components/CompanyApp/CompanyTable";
 const DashboardPage = () => {
+
   return (
     <Container fluid>
       <Statistics />

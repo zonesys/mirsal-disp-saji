@@ -9,5 +9,6 @@ export function updateUserData(userId, userGroup, userName) {
       userName: userName,
       userGroup: userGroup,
     },
+    headers: { "Access-Control-Allow-Origin": "*" },
   });
 }

@@ -1,6 +1,7 @@
 import { Button, Pagination } from "@mui/material";
 import axios from "axios";
 import { useEffect, useLayoutEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import MemberDialog from "./MemberDialog";
 function computeSizeOfPagination(arrSize) {
   let numberOfPages = 1;
@@ -48,6 +49,8 @@ const Member = (props) => {
   );
 };
 const GroupsTable = () => {
+  const account = useSelector((state) => state.account);
+
   const [showDialog, toggleShowDialog] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentMember, setCurrentMember] = useState({
@@ -63,7 +66,7 @@ const GroupsTable = () => {
   const getMembers = () => {
     axios
       .get(
-        " http://46.253.93.3:80/mirsal-api/public/Company/Read.php/company/1/users"
+        `http://46.253.93.3:80/mirsal-api/public/Company/Read.php/company/${account.user.companyId}/users`
       )
       .then((res) => {
         const data = res.data.data;

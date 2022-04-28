@@ -13,13 +13,13 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../img/logo.png";
 import { Link } from "react-router-dom";
-
-const settings = ["Logout"];
+import { useDispatch } from "react-redux";
+import { signOutAction } from "../redux/Actions/AccountAction";
 
 const HomePageNavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const dispatch = useDispatch();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -82,24 +82,28 @@ const HomePageNavBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-            
-              
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center">
-                  
-                  <Link style={{
-                    color:"black"
-                  }} className="navbar-link" to="/">
+                  <Link
+                    style={{
+                      color: "black",
+                    }}
+                    className="navbar-link"
+                    to="/"
+                  >
                     Dispatcher
                   </Link>
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center">
-                  
-                  <Link style={{
-                    color:"black"
-                  }} className="navbar-link" to="/members">
+                  <Link
+                    style={{
+                      color: "black",
+                    }}
+                    className="navbar-link"
+                    to="/members"
+                  >
                     Members
                   </Link>
                 </Typography>
@@ -122,17 +126,35 @@ const HomePageNavBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 2, color: "white", display: "block", padding: "0" }}
             >
-              <Link className="navbar-link" to="/">
+              <Link
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "100%",
+                  
+                }}
+                className="navbar-link d-flex align-items-center p-2"
+                to="/"
+              >
                 Dispatcher
               </Link>
             </Button>
             <Button
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 2, color: "white", display: "block", padding: "0" }}
             >
-              <Link className="navbar-link" to="/members">
+              <Link
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "100%",
+               
+                }}
+                className="navbar-link d-flex align-items-center"
+                to="/members"
+              >
                 Members
               </Link>
             </Button>
@@ -160,11 +182,15 @@ const HomePageNavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem
+                onClick={() => {
+                  document.cookie =
+                    "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                  signOutAction(dispatch);
+                }}
+              >
+                <Typography textAlign="center">LOGOUT</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
